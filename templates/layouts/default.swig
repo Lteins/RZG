@@ -7,8 +7,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>{{ title|default("荣掌柜") }}</title>
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		
+        <title>{{ title|default("融掌柜") }}</title>
+		<link rel="shortcut icon" href="RZG2.png" type="image/x-icon">
 
 		{# Customise the stylesheet for your site by editing /public/styles/site.less
 		//- All .less files will be automatically compiled and minified in production. #}
@@ -21,6 +22,7 @@
 		{%- endif -%}
         
         <link rel="stylesheet" href="/styles/font-awesome.min.css">
+        <link rel="stylesheet" href="/styles/demo.css">
 
 
 		{# HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
@@ -39,6 +41,9 @@
 	<body>
 
 		{# HEADER #}
+        <div class="big-logo">
+            <img id="biglogo" src="RZG2.png">
+        </div>
 		<div id="header" class="container">
 
 			{# Customise your site"s navigation by
@@ -53,7 +58,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="/">融掌柜</a>
+						<a class="navbar-brand" href="/"><img class="logo" src="RZG2.png"></a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-left">
@@ -72,7 +77,7 @@
                             <div class="form-group">
                             <input type="text" class="form-control" id="keywords" name="keywords" placeholder="搜索商品">
                             </div>
-                            <button type="submit" class="btn btn-default">Search</button>
+                            <button type="submit" class="btn btn-default">搜索</button>
                         </form>
 						<ul class="nav navbar-nav navbar-right">
 							{% if user %}
@@ -107,7 +112,9 @@
 
 		{# FOOTER #}
 		<div id="footer" class="container">
-			<p><a href="http://364199.echu.net/" target="_blank">Copyright © 2017 常容科技文化 </a></p>
+			{# You don"t _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it! #}
+			{# <p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p> #}
+            <p>Copyright © 2017 常容科技文化 地址：深圳市深南中路3003号北方工业大厦1109 服务热线：0755-83278125</p>
 		</div>
 
 		{# JAVASCRIPT #}
@@ -116,7 +123,7 @@
 			and the KeystoneJS Content Editor. If you are not targeting IE8,
 			you can upgrade to 2.1.4 (also bundled) for better performance. #}
 		<script src="/js/jquery/jquery-1.11.3.min.js"></script>
-		<
+		
 
 		{# Customise which Bootstrap javascript files are served by including
 			them specifically here, instead of bootstrap-3.3.5.min.js #}

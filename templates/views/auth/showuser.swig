@@ -8,17 +8,17 @@
     #}
 		<div class="panel panel-primary">
         <!-- Default panel contents -->
-        <div class="panel-heading">User details - {{data.user.username}}
+        <div class="panel-heading">我的帐号 - {{data.user.username}}
         </div>
         <ul class="ticket-meta">
         <li>
-            <small>Username</small><a href="" rel="tag">{{data.user.username}}</a>
+            <small>用户名</small><a href="" rel="tag">{{data.user.username}}</a>
         </li>
         <li>
-            <small>First Name</small><a href="" rel="tag">{{data.user.name.first}}</a>
+            <small>名</small><a href="" rel="tag">{{data.user.name.first}}</a>
         </li>
         <li>
-            <small>Last Name</small><a href="" rel="tag">{{data.user.name.last}}</a>
+            <small>姓</small><a href="" rel="tag">{{data.user.name.last}}</a>
         </li>
         </ul>
         <div class="panel-footer"></div>

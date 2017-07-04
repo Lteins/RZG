@@ -19,6 +19,14 @@
 		</div>
 	</div>
 
+    <div class="container img" id="slider">
+        <figure>
+            <img class="imgs" src="fat1.jpg">
+            <img class="imgs" src="fat2.jpg">
+            <img class="imgs" src="fat3.jpg">
+        </figure>
+    </div>
+
 	<div class="container">
         <div class="panel panel-primary">
         <!-- Default panel contents -->

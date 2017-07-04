@@ -67,5 +67,6 @@ exports = module.exports = function(req, res){
             keystone.session.signin({email: req.body.email, password: req.body.password}, req, res, onSuccess, onFail);
         });
     });
-    view.render('auth/join');
+
+    view.render('product/singleproduct');
 }

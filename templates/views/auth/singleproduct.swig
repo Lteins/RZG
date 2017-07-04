@@ -1,4 +1,4 @@
-{% extends "../layouts/default.swig" %}
+{% extends "../../layouts/default.swig" %}
 
 {% block content %}
     <div class="container">
@@ -69,7 +69,7 @@
                
         </tr>
             {% for transaction in data.product.ledger %}
-               {% include 'product/transaction.swig' %}
+               {% include 'transaction.swig' %}
             {% endfor %}
         </table>
 
@@ -103,7 +103,7 @@
                
         </tr>
             {% for bidding in data.product.biddings %}
-               {% include 'product/bidding.swig' %}
+               {% include 'bidding.swig' %}
             {% endfor %}
         </table>
         <div class="panel-footer">
@@ -151,14 +151,14 @@ var socket = io();
   $().ready(function(){
     $('#base')[0].innerHTML = "底价: " + getbasePrice() +"元";
     var tags = $('.transaction');
-    var transaction_list = [];
-    console.log('tag length is '+ tags.length);
+    var transaction_list = [{}];
+
     for (var i = 0; i<tags.length; i++){
       var spans = tags[i].getElementsByTagName('span');
       transaction_list.push({
-        trader: spans[0].innerHTML,
-        price: spans[1].innerHTML,
-        num: spans[2].innerHTML
+        trader: span[0].innerHTML,
+        price: span[1].innerHTML,
+        num: span[2].innerHTML
       });
     } 
     
@@ -176,7 +176,7 @@ var socket = io();
 
     socket.on('new_transaction', function(transaction){
       console.log('Receive new transaction');
-      console.log(transaction);
+      transaction_list.shift();
       transaction_list.push({
         trader: transaction.trader,
         price: transaction.price,
@@ -184,11 +184,9 @@ var socket = io();
       });
 
       var transaction_list_content = "<tr><td><p>购买人</p></td><td> <td><p>购买数量</p></td><td><p>购买价格</p></td></tr>";
-      console.log('Transaction_list is');
-      for (var i = 0; i<transaction_list.length;i++)
-        console.log(transaction_list[i]);
+
       for (var i = 0; i<transaction_list.length;i++){
-      transaction_list_content = transaction_list_content + "<tr class='transaction'><td> <div class='col-md-1'><span class='label label-info pull-left'> " + transaction_list[i].trader + "</span> </div></td><td> <td><div class='col-md-1'><span class='label label-info pull-left'>" + transaction_list[i].num + "</span></div></td><td><div class='col-md-1'><span class='label label-info pull-left'>" + transaction_list[i].price+"</span></div></td></tr>";
+      transaction_list_content = transaction_list_content + "<tr class='transaction'><td> <div class='col-md-1'><span class='label label-info pull-left'> " + transaction[i].trader + "</span> </div></td><td> <td><div class='col-md-1'><span class='label label-info pull-left'>" + transaction[i].num + "</span></div></td><td><div class='col-md-1'><span class='label label-info pull-left'>" + transaction[i].price+"</span></div></td></tr>";
       $('#transaction_list')[0].innerHTML = transaction_list_content;
       }
     });

@@ -2,6 +2,7 @@ var keystone = require('keystone');
 var async = require('async');
 
 exports = module.exports = function (req, res) {
+if (req.params.productslug != 'RZG2.png'){ 
     var view = new keystone.View(req, res);
     var locals = res.locals;
 
@@ -13,13 +14,13 @@ exports = module.exports = function (req, res) {
         product: {},
     };
 
-    // Searching for the Single Product
+    //Searching for the Single Product
     view.on('init', function(next) {
     var q = keystone.list('Product').model.findOne({'slug': req.params.productslug});
         q.exec(function(err, result) {
-            if(result != null)
+            console.log(result);
+            if(result)
             {
-
                 async.parallel([
                     //function extracting transaction's trader information
                     function(callback){
@@ -136,16 +137,15 @@ exports = module.exports = function (req, res) {
                     locals.data.product = result;
                     next(err);
                 });                
-            }
-            else
-            {
+            }else{
                 console.log('There is no Result');
-                return res.status(404).send(keystone.wrapHTMLError('Sorry, no product found! (404)'));
-            }
-            
-            
+                next(err);
+            }    
         });
     });
     
-    view.render('singleproduct');
+    view.render('product/singleproduct');
+}else{
+    res.redirect('/' + req.params.productslug);  
+}
 };
