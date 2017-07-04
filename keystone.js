@@ -15,7 +15,7 @@ swig.setDefaults({ cache: false });
 keystone.init({
 	'name': 'RZG',
 	'brand': 'RZG',
-
+	'cookie secret': '616cb7f',
 	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
