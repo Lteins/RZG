@@ -48,7 +48,7 @@ a {
 
 .imgs {
     align-content: center;
-    margin: 6%;
+    margin: 1%;
     width: auto;  
     height: auto;  
     max-width: 500px;  
@@ -103,7 +103,7 @@ a {
 
 #slider figure {
     position: relative;
-    width: 250%;
+    width: 300%;
     margin: 0;
     left: 0;
     text-align: left;

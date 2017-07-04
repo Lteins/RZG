@@ -18,47 +18,21 @@
 			<hr>
 		</div>
 	</div>
+    <div class = 'container'>
+    <div style="vertical-align: middle;"class="panel panel-primary">
+        
+    <div class="img" id="slider" style = "background: lightyellow; width:100%">
+        <figure >
+            <img class="imgs" style="width:100%; height: 300px;" src="fat1.jpg">
+            <img class="imgs" style="width:100%; height: 300px;" src="fat2.jpg">
+            <img class="imgs" style="width:100%; height: 300px;" src="fat3.jpg">
 
-    <div class="container img" id="slider">
-        <figure>
-            <img class="imgs" src="fat1.jpg">
-            <img class="imgs" src="fat2.jpg">
-            <img class="imgs" src="fat3.jpg">
+            <img class="imgs" style="width:100%; height: 300px;" src="fat1.jpg">
+            <img class="imgs" style="width:100%; height: 300px;" src="fat2.jpg">
         </figure>
     </div>
-
-	<div class="container">
-        <div class="panel panel-primary">
-        <!-- Default panel contents -->
-        <div class="panel-heading">商品一览</div>
-
-        <!-- Table -->
-        <table class="table  table-striped">
-        <tr>
-               <td>
-                    <p>商品数量</p>
-               </td>
-
-
-               <td>
-                    <p>商品名</p>
-               </td>
-
-               <td>
-                    <p>商品描述</p>
-               </td>
-               
-        </tr>
-            {% for product in data.products %}
-               {% include 'product.swig' %}
-            {% endfor %}
-        </table>
-
-        <div class="panel-footer">
-        </div>
-      </div>
-
-</div>
+    </div>
+    </div>
 
 <div class="container">
   <div class="panel panel-primary">
