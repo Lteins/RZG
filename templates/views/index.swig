@@ -39,7 +39,6 @@
                     <p>商品数量</p>
                </td>
 
-               <td> 
 
                <td>
                     <p>商品名</p>
@@ -54,11 +53,21 @@
                {% include 'product.swig' %}
             {% endfor %}
         </table>
+
         <div class="panel-footer">
         </div>
-        </div>
-         
-    </div>
+      </div>
+
+</div>
+
+<div class="container">
+  <div class="panel panel-primary">
+  <div class="panel-heading">商品一览</div>  <br>
+  {% for row in data.row %}
+      {% include 'row.swig' %}
+  {% endfor %}
+  </div>         
+</div>
 {% endblock %}
 
 {%- block js -%}

@@ -25,49 +25,51 @@ if (req.params.productslug != 'RZG2.png'){
                     //function extracting transaction's trader information
                     function(callback){
                         result.populateRelated('ledger', function(err){
+                            if (result.ledger.length > 0){
+                                function fill_first_result(waterfall_callback){
+                                    if (result.ledger.length == 1){
+                                        var qq = keystone.list('User').model.findOne({'_id': result.ledger[0].trader});
+                                        qq.exec(function(err, trader_result){
+                                           result.ledger[0]['trader'] = trader_result;
+                                           waterfall_callback(null,'Complete!'); 
+                                        }) ;
+                                    }else{
+                                        var qq = keystone.list('User').model.findOne({'_id': result.ledger[0].trader});
+                                        qq.exec(function(err, trader_result){
+                                           result.ledger[0]['trader'] = trader_result;
+                                           waterfall_callback(null,1); 
+                                        }) ;
+                                    }
+                                };
 
-                            function fill_first_result(waterfall_callback){
-                                if (result.ledger.length == 1){
-                                    var qq = keystone.list('User').model.findOne({'_id': result.ledger[0].trader});
-                                    qq.exec(function(err, trader_result){
-                                       result.ledger[0]['trader'] = trader_result;
-                                       waterfall_callback(null,'Complete!'); 
-                                    }) ;
-                                }else{
-                                    var qq = keystone.list('User').model.findOne({'_id': result.ledger[0].trader});
-                                    qq.exec(function(err, trader_result){
-                                       result.ledger[0]['trader'] = trader_result;
-                                       waterfall_callback(null,1); 
-                                    }) ;
+                                function fill_result(id, waterfall_callback){
+                                    if (id < result.ledger.length - 1){
+                                        var qq = keystone.list('User').model.findOne({'_id': result.ledger[id].trader});
+                                        qq.exec(function(err, trader_result){
+                                           result.ledger[id]['trader'] = trader_result;
+                                           waterfall_callback(null,id+1); 
+                                        }) ;       
+                                    }else{
+                                        var qq = keystone.list('User').model.findOne({'_id': result.ledger[id].trader});
+                                        qq.exec(function(err, trader_result){
+                                           result.ledger[id]['trader'] = trader_result;
+                                           waterfall_callback(null,'Complete'); 
+                                        }) ;          
+                                    }
+                                };
+
+                                var tasks =  [fill_first_result];
+                                for (i = 1;i<result.ledger.length;i++){
+                                    tasks.push(fill_result);
                                 }
-                            };
 
-                            function fill_result(id, waterfall_callback){
-                                if (id < result.ledger.length - 1){
-                                    var qq = keystone.list('User').model.findOne({'_id': result.ledger[id].trader});
-                                    qq.exec(function(err, trader_result){
-                                       result.ledger[id]['trader'] = trader_result;
-                                       waterfall_callback(null,id+1); 
-                                    }) ;       
-                                }else{
-                                    var qq = keystone.list('User').model.findOne({'_id': result.ledger[id].trader});
-                                    qq.exec(function(err, trader_result){
-                                       result.ledger[id]['trader'] = trader_result;
-                                       waterfall_callback(null,'Complete'); 
-                                    }) ;          
-                                }
-                            };
-
-                            var tasks =  [fill_first_result];
-                            for (i = 1;i<result.ledger.length;i++){
-                                tasks.push(fill_result);
+                                async.waterfall(tasks, function(err, waterfall_result){
+                                    console.log(waterfall_result);
+                                    callback(null,'One Complete');
+                                });
+                            }else{
+                                callback(null, 'One Complete');
                             }
-
-                            async.waterfall(tasks, function(err, waterfall_result){
-                                console.log(waterfall_result);
-                                callback(null,'One Complete');
-                            });
-
                         });
                         
                     },

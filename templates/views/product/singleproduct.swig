@@ -122,6 +122,8 @@ var socket = io();
     var basePrice = Number.POSITIVE_INFINITY;
     for (var i = 0; i<price_tag.length;i++)
       basePrice = Math.min(basePrice, price_tag[i].innerHTML);
+
+    basePrice = Math.min(basePrice, 0);
     
     return basePrice;
   }
@@ -186,7 +188,7 @@ var socket = io();
       var transaction_list_content = "<tr><td><p>购买人</p></td><td> <td><p>购买数量</p></td><td><p>购买价格</p></td></tr>";
 
       for (var i = 0; i<transaction_list.length;i++){
-      transaction_list_content = transaction_list_content + "<tr class='transaction'><td> <div class='col-md-1'><span class='label label-info pull-left'> " + transaction[i].trader + "</span> </div></td><td> <td><div class='col-md-1'><span class='label label-info pull-left'>" + transaction[i].num + "</span></div></td><td><div class='col-md-1'><span class='label label-info pull-left'>" + transaction[i].price+"</span></div></td></tr>";
+      transaction_list_content = transaction_list_content + "<tr class='transaction'><td> <div class='col-md-1'><span class='label label-info pull-left'> " + transaction_list[i].trader + "</span> </div></td><td> <td><div class='col-md-1'><span class='label label-info pull-left'>" + transaction_list[i].num + "</span></div></td><td><div class='col-md-1'><span class='label label-info pull-left'>" + transaction_list[i].price+"</span></div></td></tr>";
       $('#transaction_list')[0].innerHTML = transaction_list_content;
       }
     });

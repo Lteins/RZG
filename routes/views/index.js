@@ -10,7 +10,7 @@ exports = module.exports = function (req, res) {
 	locals.section = 'home';
 
     locals.data = { 
-        products: [],
+        row: [],
     };
     
     // Load all Products
@@ -20,7 +20,16 @@ exports = module.exports = function (req, res) {
         q.exec(function(err, result) {
             if(result != null)
             {
-                locals.data.products = result;
+                for (var i = 0;i<result.length;i=i+3){      
+                    if (i+2<result.length){
+                        locals.data.row.push([result[i], result[i+1], result[i+2]]);
+                    }else{
+                        var temp = [];
+                        for (var j = i;j<result/length;j++)
+                            temp.push(result[j]);
+                        locals.data.row.push(temp);
+                    }
+                }
             }
             else
             {

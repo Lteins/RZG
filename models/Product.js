@@ -23,6 +23,7 @@ Product.add({
     name:{ type: String, initial: true, required: true, unique: true, index: true, default:''},
     description: { type: String, index: true },
     num: {type:Number, index: true},
+    img: {type:String},
 });
 
 Product.relationship({path: 'ledger', ref: 'Transaction', refPath:'product'});
