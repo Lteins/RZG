@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>{{ title|default("融掌柜") }}</title>
+		<title>{{ title|default("荣掌柜") }}</title>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
 		{# Customise the stylesheet for your site by editing /public/styles/site.less
@@ -107,8 +107,7 @@
 
 		{# FOOTER #}
 		<div id="footer" class="container">
-			{# You don"t _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it! #}
-			<p>Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.</p>
+			<p><a href="http://364199.echu.net/" target="_blank">Copyright © 2017 常容科技文化 </a></p>
 		</div>
 
 		{# JAVASCRIPT #}
