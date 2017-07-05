@@ -18,23 +18,18 @@ var _ = require('lodash');
 	or replace it with your own templates / logic.
 */
 exports.initLocals = function (req, res, next) {
-
 	res.locals.user = req.user;
-	if(req.user){
-		res.locals.navLinks = [
-			{ label: '主页', key: 'home', href: '/' },
-		    { label: '个人中心', key: 'center', href: '/showuser' },
-			{ label: '信息公告', key: 'info', href: '/' },
-			{ label: '联系我们', key: 'contact', href: '/' },
-		];		
-	}else{
-		res.locals.navLinks = [
+	res.locals.navLinks = [
 		{ label: '主页', key: 'home', href: '/' },
 		{ label: '信息公告', key: 'info', href: '/' },
 		{ label: '联系我们', key: 'contact', href: '/' },
-	];	
-	}
+	];
+
+	if (req.originalUrl.indexOf('.png')>-1 || req.originalUrl.indexOf('.jpg')>-1){
+		return res.redirect(req.originalUrl.slice(req.originalUrl.lastIndexOf('/')));
+	}else{
 	next();
+	}
 };
 
 

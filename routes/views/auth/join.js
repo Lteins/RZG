@@ -34,6 +34,7 @@ exports = module.exports = function(req, res){
             },
 
             function(cb){
+
                 var userData = {
                     username: req.body.username,
                     name: {
@@ -46,10 +47,19 @@ exports = module.exports = function(req, res){
 
                 var User = keystone.list('User').model;
                 newUser = new User(userData);
-                newUser.save(function(err){
-                    if(!err)
-                        console.log("User is successfully saved!");
-                    return cb(err);
+                newUser.save(function(err, newUser_result){
+                    var warehouseData = {
+                        owner: newUser_result._id,
+                        name: {
+                            first: newUser_result.username + "'s",
+                            last: 'Warehouse'
+                        }
+                    };
+                    var Warehouse = keystone.list('Warehouse').model;
+                    newWarehouse = new Warehouse(warehouseData);
+                    newWarehouse.save(function(err){
+                        return cb(err);
+                    });
                 });
             }
         ], function(err){
@@ -68,5 +78,5 @@ exports = module.exports = function(req, res){
         });
     });
 
-    view.render('product/singleproduct');
+    view.render('auth/join');
 }

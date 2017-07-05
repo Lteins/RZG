@@ -9,7 +9,7 @@
 
 		
         <title>{{ title|default("融掌柜") }}</title>
-		<link rel="shortcut icon" href="RZG2.png" type="image/x-icon">
+		<link rel="shortcut icon" href="RZG.png" type="image/x-icon">
 
 		{# Customise the stylesheet for your site by editing /public/styles/site.less
 		//- All .less files will be automatically compiled and minified in production. #}
@@ -82,7 +82,7 @@
 						<ul class="nav navbar-nav navbar-right">
 							{% if user %}
                                 <li><a href="/signout">登出</a></li>
-                                <li><a href="/signout">个人中心</a></li>
+                                <li><a href="/showuser">个人中心</a></li>
                             {% else %}
                                 <li><a href="/join">注册账号</a></li>
                                 <li><a href="/signin">登入</a></li>

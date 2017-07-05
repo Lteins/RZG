@@ -2,7 +2,8 @@ var keystone = require('keystone');
 var async = require('async');
 
 exports = module.exports = function (req, res) {
-if (req.params.productslug != 'RZG2.png'){ 
+
+
     var view = new keystone.View(req, res);
     var locals = res.locals;
 
@@ -18,7 +19,7 @@ if (req.params.productslug != 'RZG2.png'){
     view.on('init', function(next) {
     var q = keystone.list('Product').model.findOne({'slug': req.params.productslug});
         q.exec(function(err, result) {
-            console.log(result);
+        
             if(result)
             {
                 async.parallel([
@@ -64,7 +65,7 @@ if (req.params.productslug != 'RZG2.png'){
                                 }
 
                                 async.waterfall(tasks, function(err, waterfall_result){
-                                    console.log(waterfall_result);
+                                
                                     callback(null,'One Complete');
                                 });
                             }else{
@@ -147,7 +148,4 @@ if (req.params.productslug != 'RZG2.png'){
     });
     
     view.render('product/singleproduct');
-}else{
-    res.redirect('/' + req.params.productslug);  
-}
 };

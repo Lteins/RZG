@@ -1,4 +1,4 @@
-<tr id='transaction'>
+<tr class='transaction'>
                <td>
                 <div class=' col-md-1'>
                     <span class="label label-info pull-left">{{transaction.trader.username}}</span>

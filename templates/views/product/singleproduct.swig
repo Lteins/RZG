@@ -153,14 +153,14 @@ var socket = io();
   $().ready(function(){
     $('#base')[0].innerHTML = "底价: " + getbasePrice() +"元";
     var tags = $('.transaction');
-    var transaction_list = [{}];
+    var transaction_list = [];
 
     for (var i = 0; i<tags.length; i++){
       var spans = tags[i].getElementsByTagName('span');
       transaction_list.push({
-        trader: span[0].innerHTML,
-        price: span[1].innerHTML,
-        num: span[2].innerHTML
+        trader: spans[0].innerHTML,
+        price: spans[1].innerHTML,
+        num: spans[2].innerHTML
       });
     } 
     
@@ -178,7 +178,6 @@ var socket = io();
 
     socket.on('new_transaction', function(transaction){
       console.log('Receive new transaction');
-      transaction_list.shift();
       transaction_list.push({
         trader: transaction.trader,
         price: transaction.price,

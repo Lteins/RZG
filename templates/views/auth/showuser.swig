@@ -12,13 +12,13 @@
         </div>
         <ul class="ticket-meta">
         <li>
-            <small>用户名</small><a href="" rel="tag">{{data.user.username}}</a>
+            <small>用户名</small>{{data.user.username}}
         </li>
         <li>
-            <small>名</small><a href="" rel="tag">{{data.user.name.first}}</a>
+            <small>名</small>{{data.user.name.first}}
         </li>
         <li>
-            <small>姓</small><a href="" rel="tag">{{data.user.name.last}}</a>
+            <small>姓</small>{{data.user.name.last}}
         </li>
         </ul>
         <div class="panel-footer"></div>
