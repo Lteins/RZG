@@ -115,7 +115,7 @@
 
 {%- block js -%}
 <script type="text/javascript">
-var socket = io();
+   var socket = io('/' + $('#product_id')[0].innerHTML);
 
   function getbasePrice(){
     var price_tag = $('.price');
@@ -151,6 +151,9 @@ var socket = io();
   
 
   $().ready(function(){
+
+   
+
     $('#base')[0].innerHTML = "底价: " + getbasePrice() +"元";
     var tags = $('.transaction');
     var transaction_list = [];

@@ -44,8 +44,11 @@ exports = module.exports = function (app) {
     app.all('/signin', routes.views.auth.signin);
     //登出请求
     app.get('/signout', routes.views.auth.signout);
+
     //进入用户中心请求
     app.get('/showuser', routes.views.auth.showuser);
+    //app.get('/warehouse/:warehouseslug', routes.views.warehouse.showWarehouse);
+    
 
     //显示某个商品页面
     app.all('/products/:productslug', routes.views.product.singleproduct);

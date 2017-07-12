@@ -18,6 +18,7 @@ var Warehouse = new keystone.List('Warehouse',{autokey: {path: 'slug', from: 'ow
 Warehouse.add({
     owner: { type: Types.Relationship, ref: 'User', many: false },
     name: { type: Types.Name },
+    address: {type: String}
 });
 
 //建立与账目的One - Many 关系

@@ -22,7 +22,7 @@ keystone.init({
 	'views': 'templates/views',
 	'view engine': 'swig',
 	'custom engine': swig.renderFile,
-
+	'port': 80,
 	'emails': 'templates/emails',
 	'auto update': true,
 	'session': true,

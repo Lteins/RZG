@@ -12,6 +12,8 @@ User.add({
 	name: { type: Types.Name, required: true, index: true },
 	email: { type: Types.Email, initial: true, required: true, index: true },
 	password: { type: Types.Password, initial: true, required: true },
+    phone: {type: Number, initial: true, required: true},
+    capital: {type: Types.Money},
     my_warehouse: { type: Types.Relationship, ref: 'Warehouse', many: false },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
