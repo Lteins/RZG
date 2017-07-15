@@ -25,6 +25,7 @@ Transaction.add({
     destination:{ type: Types.Relationship, ref:'Warehouse', many:false},
     trader:{ type: Types.Relationship, ref:'User', many:false},
     product:{ type: Types.Relationship, ref: 'Product', many:false},
+    status:{ type: Types.Select, options: 'accept, send, receive', default: 'accept'}
 });
 
 Transaction.defaultColumns = 'num, price';

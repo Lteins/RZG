@@ -13,7 +13,7 @@ User.add({
 	email: { type: Types.Email, initial: true, required: true, index: true },
 	password: { type: Types.Password, initial: true, required: true },
     phone: {type: Number, initial: true, required: true},
-    capital: {type: Types.Money},
+    capital: {type: Types.Money, default: 123.5},
     my_warehouse: { type: Types.Relationship, ref: 'Warehouse', many: false },
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },

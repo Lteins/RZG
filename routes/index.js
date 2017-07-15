@@ -49,10 +49,14 @@ exports = module.exports = function (app) {
     app.get('/showuser', routes.views.auth.showuser);
     //app.get('/warehouse/:warehouseslug', routes.views.warehouse.showWarehouse);
     
+    app.get('/showuser', routes.views.auth.warehouse);
 
     //显示某个商品页面
     app.all('/products/:productslug', routes.views.product.singleproduct);
 
+    app.get('/warehouse', routes.views.auth.warehouse);
+
+    //app.get('/recharge', routes.views.recharge);
     //对每个现有商品开始交易
     var q_for_products = keystone.list('Product').model.find();
     q_for_products.exec(function(err, products_result){

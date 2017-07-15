@@ -10,6 +10,7 @@
             <p id = "base">底价: </p>
             <p id = "product_id" style="display: none">{{data.product.id}}</p>
             <p id = "user_id" style="display: none">{{user.id}}</p>
+         
             <hr>
           {% if user  %}
           <form action="/createBidding" name= "bidding_form" method="post" class="form-horizontal" onsubmit="return submitForm()">
