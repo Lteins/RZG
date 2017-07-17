@@ -52,10 +52,41 @@
            <td>
                 <p>成交价格</p>
            </td>
+
+            <td>
+                <p>货源</p>
+           </td>
                
         </tr>
             {% for transaction in data.ledger %}
                {% include 'transaction.swig' %}
+            {% endfor %}
+        </table>
+
+        <div class="panel-footer">
+        </div>
+        </div>
+         
+    </div>
+
+    <div class="container">
+        <div class="panel panel-primary">
+        <!-- Default panel contents -->
+        <div class="panel-heading">库存</div>
+
+        <!-- Table -->
+        <table id = 'book_list' class="table  table-striped">
+        <tr>
+            <td>
+                <p>产品</p>
+           </td>
+
+           <td>
+                <p>数量</p>
+           </td>
+        </tr>
+            {% for book in data.inventory %}
+               {% include 'book.swig' %}
             {% endfor %}
         </table>
 

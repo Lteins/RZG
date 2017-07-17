@@ -22,9 +22,9 @@
         <input type="password" class="form-control" placeholder="Password" name="password" id="password">
         </div>
     </div>
+     <input  type="String" class="form-control" value = "{{data.prepage}}" name="prepage" id="prepage">
     <div class="form-group">
-        <input type="submit" class="btn btn-primary " value="登录">    <br/>
-        <a href='/forgotpassword' class="forget-pass">忘记密码</a>
+        <input type="submit" class="btn btn-primary " value="登录"> <br/>
     </div>
     </form>
     </div>
@@ -32,3 +32,11 @@
     </div>
 </div>
  {% endblock %}
+
+{%- block js -%}
+<script type="text/javascript">
+$().ready(function(){
+    
+});
+</script>
+{%- endblock -%}

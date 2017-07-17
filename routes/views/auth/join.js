@@ -12,6 +12,9 @@ exports = module.exports = function(req, res){
     locals.section = "createaccount";
     locals.form = req.body;
 
+    if (req.headers['referer'] && (locals.data == undefined || locals.data.prepage == undefined))
+        locals.data = {prepage: req.headers['referer']};
+
     view.on('post', function(next){
         async.series([
             function(cb){
@@ -77,24 +80,28 @@ exports = module.exports = function(req, res){
                             first: newUser_result.username + "'s",
                             last: 'Warehouse'
                         },
-                        address: req.body.address
                     };
                     var Warehouse = keystone.list('Warehouse').model;
                     newWarehouse = new Warehouse(warehouseData);
-                    newWarehouse.save(function(err){
-                        return cb(err);
+                    newWarehouse.save(function(err, warehouse_result){
+                        keystone.list('User').model.findByIdAndUpdate(newUser_result._id, {$set:{my_warehouse: warehouse_result._id}}, function(err, result){
+                            return cb();
+                        });
                     });
                 });
             }
         ], function(err){
-            if (err) return next();
+            if (err) {
+                locals.data['prepage'] = req.body.prepage;
+                return next();
+            };
             
             var onSuccess = function(){
-                res.redirect('/showuser');
+                res.redirect(req.body.prepage);
             }
 
             var onFail = function(e){
-                req.flash('error', 'there was a problem signing you up, please try again')
+                req.flash('error', '登录出现问题，请稍后再试')
                 return next();
             }
 

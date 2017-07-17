@@ -22,6 +22,7 @@ var Product = new keystone.List('Product',{autokey: {path: 'slug', from: 'name',
 Product.add({
     name:{ type: String, initial: true, required: true, unique: true, index: true, default:''},
     description: { type: String, index: true },
+    price: {type:Types.Money, default: 100},
     num: {type:Number, index: true},
     img: {type:String},
 });
@@ -29,7 +30,11 @@ Product.add({
 Product.relationship({path: 'ledger', ref: 'Transaction', refPath:'product'});
 Product.relationship({path: 'biddings', ref: 'Bidding',refPath:'product'});
 
-Product.schema.virtual('url').get(function(){
+Product.schema.virtual('wholesale_url').get(function(){
+    return '/wholesale/' + this.slug;
+})
+
+Product.schema.virtual('retail_url').get(function(){
     return '/products/' + this.slug;
 })
 

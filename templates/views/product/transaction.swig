@@ -18,6 +18,12 @@
                     <span class="label label-info pull-left">{{transaction.num}}</span>
                 </div>
                </td>
+
+               <td>
+                <div class=' col-md-1'>
+                    <span class="label label-info pull-left">{{transaction.trader.username}}</span>
+                </div>
+               </td>
                
 </tr>
 

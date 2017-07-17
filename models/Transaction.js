@@ -24,9 +24,9 @@ Transaction.add({
     price: { type: Number, required: true, default: '100'},
     destination:{ type: Types.Relationship, ref:'Warehouse', many:false},
     trader:{ type: Types.Relationship, ref:'User', many:false},
-    product:{ type: Types.Relationship, ref: 'Product', many:false},
-    status:{ type: Types.Select, options: 'accept, send, receive', default: 'accept'}
+    saler:{type: Types.Relationship, ref: 'User', many:false},
+    product:{ type: Types.Relationship, ref: 'Product', many:false}
 });
 
-Transaction.defaultColumns = 'num, price';
+Transaction.defaultColumns = 'num, price, product';
 Transaction.register();

@@ -53,15 +53,16 @@ exports = module.exports = function (app) {
 
     //显示某个商品页面
     app.all('/products/:productslug', routes.views.product.singleproduct);
+    app.all('/wholesale/:productslug', routes.views.product.wholesale);
 
     app.get('/warehouse', routes.views.auth.warehouse);
 
     //app.get('/recharge', routes.views.recharge);
     //对每个现有商品开始交易
-    var q_for_products = keystone.list('Product').model.find();
-    q_for_products.exec(function(err, products_result){
-        for(var i = 0;i<products_result.length;i++){
-            setInterval(require('../lib/accept_bid'), 5000, products_result[i]);
-        }
-    });
+    // var q_for_products = keystone.list('Product').model.find();
+    // q_for_products.exec(function(err, products_result){
+    //     for(var i = 0;i<products_result.length;i++){
+    //         setInterval(require('../lib/accept_bid'), 5000, products_result[i]);
+    //     }
+    // });
 };

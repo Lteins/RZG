@@ -21,7 +21,6 @@ Bidding.add({
 
     num:{ type: Number, required: true, default:'100'},
     price: { type: Number, required: true, default: '100'},
-
     bidder:{ type: Types.Relationship, ref:'User', many:false},
     product:{ type: Types.Relationship, ref: 'Product', many:false},
 });

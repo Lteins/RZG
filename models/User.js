@@ -15,6 +15,7 @@ User.add({
     phone: {type: Number, initial: true, required: true},
     capital: {type: Types.Money, default: 123.5},
     my_warehouse: { type: Types.Relationship, ref: 'Warehouse', many: false },
+    ismember: {type: Boolean},
 }, 'Permissions', {
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
 });

@@ -11,6 +11,9 @@ exports = module.exports = function(req, res){
 
     locals.section = 'signin';
 
+    if (req.headers['referer'] && (locals.data == undefined || locals.data.prepage == undefined))
+        locals.data = {prepage: req.headers['referer']};
+
     view.on('post', function(next){
         if (!req.body.email||!req.body.password){
             req.flash('error', 'Please enter your email and password.');
@@ -18,13 +21,15 @@ exports = module.exports = function(req, res){
         }
 
         var onSuccess = function(){
-            res.redirect('/showuser');
+            console.log(req.body.prepage);
+            res.redirect(req.body.prepage);
         };
 
         var onFail = function(){
-            req.flash('error', 'Something Wrong. Please try again later');
+            req.flash('error', '用户名或者密码不正确');
+            req.flash('ram', req.body.prepage);
+            res.redirect('/signin');
         };
-
         keystone.session.signin({email: req.body.email, password: req.body.password}, req, res, onSuccess, onFail);
     });
 

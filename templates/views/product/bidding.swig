@@ -18,6 +18,10 @@
                     <span class="price label label-info pull-left">{{bidding.price}}</span>
                 </div>
                </td>
-               
+               {%if user.ismember%}
+               <td>
+               <button id = "{{bidding.id}}" onclick = 'accept_bid(this.id)'>接受交易</button>
+               </td>
+               {%endif%}
 </tr>
 

@@ -55,6 +55,7 @@
             <label class="col-md-4 control-label">快递地址*</label>
             <div class="col-md-8">
                         <input class="form-control" id="address" name="address" placeholder="收货人地址" type="text">
+                        <input class="form-control" id="prepage" name="prepage" value="{{data.prepage}}" type="String">                        
             </div>
           </div> 
 

@@ -34,11 +34,23 @@
     </div>
     </div>
 
+{% if user.ismember %}
+
 <div class="container">
   <div class="panel panel-primary">
-  <div class="panel-heading">商品一览</div>  <br>
+  <div class="panel-heading">批发商品</div>  <br>
   {% for row in data.row %}
       {% include 'row.swig' %}
+  {% endfor %}
+  </div>         
+</div>
+{% endif %}
+
+<div class="container">
+  <div class="panel panel-primary">
+  <div class="panel-heading">零售市场</div>  <br>
+  {% for row in data.row %}
+      {% include 'retail_row.swig' %}
   {% endfor %}
   </div>         
 </div>

@@ -18,11 +18,12 @@ var _ = require('lodash');
 	or replace it with your own templates / logic.
 */
 exports.initLocals = function (req, res, next) {
+	
 	res.locals.user = req.user;
 	res.locals.navLinks = [
-		{ label: '主页', key: 'home', href: '/' },
-		{ label: '信息公告', key: 'info', href: '/' },
-		{ label: '联系我们', key: 'contact', href: '/' },
+		{ label: '主页', key: 'home', href: 'http://www.crongkj.com/' },
+		{ label: '信息公告', key: 'info', href: 'http://www.crongkj.com/' },
+		{ label: '联系我们', key: 'contact', href: 'http://www.crongkj.com/' },
 	];
 
 	if (req.originalUrl.indexOf('.png')>-1 || req.originalUrl.indexOf('.jpg')>-1){
@@ -43,7 +44,11 @@ exports.flashMessages = function (req, res, next) {
 		warning: req.flash('warning'),
 		error: req.flash('error'),
 	};
+	var temp = req.flash('ram');
+	if (temp[0] != undefined)
+	res.locals.data['prepage'] = temp[0];
 	res.locals.messages = _.some(flashMessages, function (msgs) { return msgs.length; }) ? flashMessages : false;
+
 	next();
 };
 

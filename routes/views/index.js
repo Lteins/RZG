@@ -25,7 +25,7 @@ exports = module.exports = function (req, res) {
                         locals.data.row.push([result[i], result[i+1], result[i+2]]);
                     }else{
                         var temp = [];
-                        for (var j = i;j<result/length;j++)
+                        for (var j = i;j<result.length;j++)
                             temp.push(result[j]);
                         locals.data.row.push(temp);
                     }
