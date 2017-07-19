@@ -55,7 +55,11 @@ exports = module.exports = function (app) {
     app.all('/products/:productslug', routes.views.product.singleproduct);
     app.all('/wholesale/:productslug', routes.views.product.wholesale);
 
-    app.get('/warehouse', routes.views.auth.warehouse);
+    //显示充值页面
+    app.get('/charge', routes.views.charge.charge);
+    app.all('/charge_submit', routes.views.charge.charge_submit);
+    app.all('/charge_confirm', routes.views.charge.charge_confirm);
+    //app.get('/warehouse', routes.views.auth.warehouse);
 
     //app.get('/recharge', routes.views.recharge);
     //对每个现有商品开始交易

@@ -15,7 +15,7 @@ exports = module.exports = function(req, res) {
     view.on('init', function(next) {
         var q_for_warehouse = keystone.list('Warehouse').model.findOne({'owner': req.user._id});
         q_for_warehouse.exec(function(err, warehouse_result){
-            async.parallel([load_transaction, load_book],function(err, results){
+            async.parallel([load_transaction, load_book, load_bidding],function(err, results){
                 next();
             })
 
@@ -24,28 +24,19 @@ exports = module.exports = function(req, res) {
                     if (warehouse_result.ledger.length > 0){
                         var transactions = [];
                         populateAll(warehouse_result.ledger,'product', 'Product', function(){
-                            populateAll(warehouse_result.ledger, 'saler', 'User', function(){
                                 for (var i=0;i<warehouse_result.ledger.length;i++){
-                                    function translate(status){
-                                        if (status == 'accept')
-                                            return '已受理';
-                                        if (status == 'send');
-                                            return '已发送';
-                                    }
 
                                     transactions.push({
                                         product: warehouse_result.ledger[i].product.name,
-                                        status: translate(warehouse_result.ledger[i].status),
                                         price: warehouse_result.ledger[i].price,
                                         num: warehouse_result.ledger[i].num,
-                                        saler: warehouse_result.ledger[i].saler
+                                        direction: ((req.user._id == warehouse_result.ledger[i].saler) ? '出货' : '进货')
                                     });
 
                                 }
                                 res.locals.data['ledger'] = transactions;
                                 
                                 pcallback(null, 'Ledger Retrieve');  
-                            });
                         });
                     }else{
                          pcallback(null, 'Ledger Retrieve'); 
@@ -70,6 +61,20 @@ exports = module.exports = function(req, res) {
                         });
                     }else{
                         pcallback(null, 'Inventory Retrieve'); 
+                    }
+                });
+            }
+
+            function load_bidding(pcallback){
+                var q_for_biddings = keystone.list('Bidding').model.find({'bidder': req.user._id});
+                q_for_biddings.exec(function(err, biddings){
+                    if (biddings.length > 0){
+                        populateAll(biddings, 'product', 'Product', function(){
+                            res.locals.data['biddings'] = biddings;
+                            pcallback(null, 'Biddings Retrieve');
+                        });
+                    }else{
+                        pcallback(null, 'Biddings Retrieve');
                     }
                 });
             }

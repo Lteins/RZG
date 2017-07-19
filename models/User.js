@@ -20,6 +20,8 @@ User.add({
 	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
 });
 
+User.relationship({ path:'my_order', ref: 'Order', refPath: 'payer'});
+
 // Provide access to Keystone
 User.schema.virtual('canAccessKeystone').get(function () {
 	return this.isAdmin;

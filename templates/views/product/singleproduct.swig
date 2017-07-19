@@ -88,7 +88,7 @@
 
 {%- block js -%}
 <script type="text/javascript">
-   var socket = io('/' + $('#product_id')[0].innerHTML);
+  var socket = io('/' + $('#product_id')[0].innerHTML);
 
   function getbasePrice(){
     var price_tag = $('.price');

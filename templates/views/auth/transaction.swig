@@ -6,13 +6,6 @@
                </td>
 
                <td>
-                <div class=' col-md-1'>
-                    <span class="label label-info pull-left">{{transaction.status}}</span>
-                </div>
-               </td>
-
-
-               <td>
                 <div class='col-md-1'>
                     <span class="label label-info pull-left">{{transaction.num}}</span>
                 </div>
@@ -26,9 +19,8 @@
 
                 <td>
                 <div class=' col-md-1'>
-                    <span class="label label-info pull-left">{{transaction.saler}}</span>
+                    <span class="label label-info pull-left">{{transaction.direction}}</span>
                 </div>
-               </td>
-                   
+               </td>            
 </tr>
 

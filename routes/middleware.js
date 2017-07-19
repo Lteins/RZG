@@ -44,6 +44,7 @@ exports.flashMessages = function (req, res, next) {
 		warning: req.flash('warning'),
 		error: req.flash('error'),
 	};
+	console.log('flash Message is '+ flashMessages.info + " " + flashMessages.success + " "+ flashMessages.error);
 	var temp = req.flash('ram');
 	if (temp[0] != undefined)
 	res.locals.data['prepage'] = temp[0];
