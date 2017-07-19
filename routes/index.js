@@ -49,7 +49,7 @@ exports = module.exports = function (app) {
     app.get('/showuser', routes.views.auth.showuser);
     //app.get('/warehouse/:warehouseslug', routes.views.warehouse.showWarehouse);
     
-    app.get('/showuser', routes.views.auth.warehouse);
+    app.all('/showuser', routes.views.auth.warehouse);
 
     //显示某个商品页面
     app.all('/products/:productslug', routes.views.product.singleproduct);

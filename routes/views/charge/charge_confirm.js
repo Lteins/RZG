@@ -9,7 +9,7 @@ exports = module.exports = function(req, res) {
         var query_for_order = keystone.list('Order').model.findOne({"_id": order_id});
         query_for_order.exec(function(err, order_result){
             if(order_result){
-                var query_for_payer = keystone.list('Order').model.findOne({"_id": order_result.payer})
+                var query_for_payer = keystone.list('User').model.findOne({"_id": order_result.payer})
                 query_for_payer.exec(function(err, payer_result){
                     if(payer_result){
                         keystone.list('User').model.findByIdAndUpdate(payer_result._id, {$set: {'capital': parseFloat(payer_result.capital) + parseFloat(order_result.total_amount)}}, function(err, user_update){

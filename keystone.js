@@ -21,7 +21,7 @@ keystone.init({
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'swig',
-	'port': 80,
+	'port': 3000,
 	'custom engine': swig.renderFile,
 	'emails': 'templates/emails',
 	'auto update': true,

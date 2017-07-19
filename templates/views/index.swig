@@ -7,12 +7,12 @@
 		 		<hr>
 			{% if user  %}
 				<p>
-					<a href="/createticket" class="btn btn-lg btn-primary">购买商品</a>
+					<a href="/charge" class="btn btn-lg btn-primary">账号充值</a>
 				</p>
 			{% else %}
 			 	<p>
 					<a href="/join" style="margin-right: 10px" class="btn btn-lg btn-primary">创建账号</a>
-					已购买商品
+					以购买商品
 				</p>
 			{% endif %}
 			<hr>
